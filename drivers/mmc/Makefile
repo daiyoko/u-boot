@@ -47,6 +47,7 @@ COBJS-$(CONFIG_SPEAR_SDHCI) += spear_sdhci.o
 COBJS-$(CONFIG_TEGRA_MMC) += tegra_mmc.o
 COBJS-$(CONFIG_DWMMC) += dw_mmc.o
 COBJS-$(CONFIG_EXYNOS_DWMMC) += exynos_dw_mmc.o
+COBJS-$(CONFIG_MMC_SUNXI) += sunxi_mmc.o
 COBJS-$(CONFIG_ZYNQ_SDHCI) += zynq_sdhci.o
 
 COBJS	:= $(COBJS-y)
