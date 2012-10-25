@@ -1,4 +1,8 @@
 #
+# (C) Copyriht 2012 Henrik Nordstrom <henrik@henriknordstrom.net>
+#
+# Based on some other board Makefile
+#
 # (C) Copyright 2000-2003
 # Wolfgang Denk, DENX Software Engineering, wd@denx.de.
 #
@@ -23,27 +27,17 @@
 
 include $(TOPDIR)/config.mk
 
-LIB	= $(obj)lib$(CPU).o
+LIB	:= $(obj)lib$(BOARD).o
 
-START	:= start.o
+COBJS-y	:= board.o
 
-COBJS	+= cache_v7.o
+COBJS	:= $(COBJS-y)
+SRCS 	:= $(COBJS:.o=.c)
+OBJS 	:= $(addprefix $(obj),$(COBJS))
 
-COBJS	+= cpu.o
-COBJS	+= syslib.o
-COBJS	+= cmd_boot.o
+all:	$(LIB)
 
-ifneq ($(CONFIG_AM33XX)$(CONFIG_OMAP44XX)$(CONFIG_OMAP54XX)$(CONFIG_TEGRA)$(CONFIG_MX6)$(CONFIG_TI814X)$(CONFIG_SUNXI),)
-SOBJS	+= lowlevel_init.o
-endif
-
-SRCS	:= $(START:.o=.S) $(COBJS:.o=.c)
-OBJS	:= $(addprefix $(obj),$(COBJS) $(SOBJS))
-START	:= $(addprefix $(obj),$(START))
-
-all:	$(obj).depend $(START) $(LIB)
-
-$(LIB):	$(OBJS)
+$(LIB):	$(obj).depend $(OBJS)
 	$(call cmd_link_o_target, $(OBJS))
 
 #########################################################################
@@ -53,4 +47,4 @@ include $(SRCTREE)/rules.mk
 
 sinclude $(obj).depend
 
-#########################################################################
+########################################################################
