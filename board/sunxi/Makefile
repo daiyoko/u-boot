@@ -31,6 +31,7 @@ LIB	:= $(obj)lib$(BOARD).o
 
 COBJS-y	:= board.o
 COBJS-$(CONFIG_A13_OLINUXINO)	+= dram_a13_olinuxino.o
+COBJS-$(CONFIG_A13_MID)		+= dram_a13_mid.o
 COBJS-$(CONFIG_CUBIEBOARD)	+= dram_cubieboard.o
 COBJS-$(CONFIG_CUBIEBOARD_512)	+= dram_cubieboard_512.o
 COBJS-$(CONFIG_HACKBERRY)	+= dram_hackberry.o
