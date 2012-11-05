@@ -53,4 +53,8 @@
 #define HAVE_BLOCK_DEVICE
 #endif
 
+#ifndef CONFIG_SYS_BOARD_NAME
+#define CONFIG_SYS_BOARD_NAME CONFIG_SYS_TARGET
+#endif
+
 #endif	/* __CONFIG_FALLBACKS_H */
