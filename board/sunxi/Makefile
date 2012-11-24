@@ -31,6 +31,7 @@ LIB	:= $(obj)lib$(BOARD).o
 
 COBJS-y	:= board.o
 COBJS-$(CONFIG_A13_OLINUXINO)	+= dram_a13_olinuxino.o
+COBJS-$(CONFIG_MELE_A1000)	+= dram_mele_a1000.o
 
 COBJS	:= $(COBJS-y)
 SRCS 	:= $(COBJS:.o=.c)
