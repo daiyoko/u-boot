@@ -36,6 +36,7 @@ COBJS-$(CONFIG_CUBIEBOARD)	+= dram_cubieboard.o
 COBJS-$(CONFIG_CUBIEBOARD_512)	+= dram_cubieboard_512.o
 COBJS-$(CONFIG_HACKBERRY)	+= dram_hackberry.o
 COBJS-$(CONFIG_MELE_A1000)	+= dram_mele_a1000.o
+COBJS-$(CONFIG_MINI_X)		+= dram_mini_x.o
 
 COBJS	:= $(COBJS-y)
 SRCS 	:= $(COBJS:.o=.c)
