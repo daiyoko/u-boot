@@ -157,7 +157,9 @@ ALL-y	+= $(obj)$(BOARD)-spl.bin
 endif
 
 ifdef CONFIG_SUNXI
+ifndef CONFIG_SPL_FEL
 ALL-y	+= $(obj)sunxi-spl.bin
+endif
 endif
 
 all:	$(ALL-y)
