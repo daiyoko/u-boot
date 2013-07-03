@@ -28,8 +28,10 @@
  */
 
 #include <common.h>
+#include <asm/io.h>
 #include <asm/arch/dram.h>
 #include <asm/arch/clock.h>
+#include <asm/gpio.h>
 #include <asm/arch/mmc.h>
 #ifdef CONFIG_AXP152_POWER
 #include <axp152.h>
@@ -73,6 +75,60 @@ int board_mmc_init(bd_t *bis)
 	sunxi_mmc_init(CONFIG_MMC_SUNXI_SLOT);
 
 	return 0;
+}
+#endif
+
+#if defined(CONFIG_NAND_SUNXI) && defined(CONFIG_NAND)
+void sunxi_nand_gpio_init(void)
+{
+	/* NRB1 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(7), 2);
+	/* NRB0 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(6), 2);
+	/* NRE# */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(5), 2);
+	/* NCE0 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(4), 2);
+	/* NCE1 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(3), 2);
+	/* NCLE */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(2), 2);
+	/* NALE */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(1), 2);
+	/* NWE */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(0), 2);
+	/* NDQ7 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(15), 2);
+	/* NDQ6 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(14), 2);
+	/* NDQ5 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(13), 2);
+	/* NDQ4 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(12), 2);
+	/* NDQ3 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(11), 2);
+	/* NDQ2 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(10), 2);
+	/* NDQ1 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(9), 2);
+	/* NDQ0 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(8), 2);
+	/* NCE7 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(22), 2);
+	/* NCE7 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(22), 2);
+	/* NCE6 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(21), 2);
+	/* NCE5 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(20), 2);
+	/* NCE4 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(19), 2);
+	/* NCE3 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(18), 2);
+	/* NCE2 */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(17), 2);
+	/* NWP */
+	sunxi_gpio_set_cfgpin(SUNXI_GPC(16), 2);
 }
 #endif
 
@@ -124,6 +180,10 @@ void sunxi_board_init(void)
 #endif
 	else
 		printf("Failed to set core voltage!. Can't set CPU frequency\n");
+
+#if defined(CONFIG_NAND_SUNXI) && defined(CONFIG_NAND)
+	sunxi_nand_gpio_init();
+#endif
 }
 
 #ifdef CONFIG_SPL_DISPLAY_PRINT
