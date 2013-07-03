@@ -184,6 +184,11 @@ void sunxi_board_init(void)
 #if defined(CONFIG_NAND_SUNXI) && defined(CONFIG_NAND)
 	sunxi_nand_gpio_init();
 #endif
+
+#if defined(CONFIG_CMD_NAND)
+	printf("NAND:");
+	nand_init();
+#endif
 }
 
 #ifdef CONFIG_SPL_DISPLAY_PRINT

@@ -73,9 +73,9 @@
 #define PHYS_SDRAM_1			CONFIG_SYS_SDRAM_BASE
 #if 0
 /* Nand config */
-#define CONFIG_NAND
-#define CONFIG_NAND_SUNXI
-#define CONFIG_CMD_NAND                         /* NAND support */
+#define CONFIG_NAND						1
+#define CONFIG_NAND_SUNXI				1
+#define CONFIG_CMD_NAND					1	/* NAND support */
 #define CONFIG_SYS_MAX_NAND_DEVICE      1
 #define CONFIG_SYS_NAND_BASE            0x00
 #endif
